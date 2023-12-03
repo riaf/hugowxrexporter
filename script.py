@@ -30,6 +30,8 @@ def parse_hugo_markdown(file_path):
 
 
 def parse_date(date_str):
+    date_str = re.sub(r"\b[A-Z]{3}\b", "", date_str)
+
     try:
         return date_parser.parse(date_str)
     except ValueError:
