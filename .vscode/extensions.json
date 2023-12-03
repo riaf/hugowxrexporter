@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "github.vscode-github-actions",
+    "ms-python.black-formatter",
+    "ms-python.python"
+  ]
+}
