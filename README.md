@@ -22,8 +22,8 @@ Docker must be installed to use this tool.
 Pull the public Docker image and execute the Docker container, specifying the path to your Hugo `content` directory and optionally setting environment variables.
 
 ```bash
-docker pull ghcr.io/riaf/HugoWXRExporter:latest
-docker run -v /path/to/hugo/content:/app/content -e HUGO_WXR_CREATOR="YourName" -e HUGO_WXR_GUID="http://yourwebsite.com/" ghcr.io/riaf/HugoWXRExporter:latest /app/content
+docker pull ghcr.io/riaf/hugowxrexporter:latest
+docker run -v /path/to/hugo/content:/app/content -e HUGO_WXR_CREATOR="YourName" -e HUGO_WXR_GUID="http://yourwebsite.com/" ghcr.io/riaf/hugowxrexporter:latest /app/content
 ```
 
 Replace `/path/to/hugo/content` with the actual path to your Hugo content directory. Adjust the environment variables as needed.
