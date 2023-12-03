@@ -5,6 +5,7 @@ import os
 import re
 import hashlib
 from datetime import datetime
+from dateutil import parser as date_parser
 from xml.etree.ElementTree import Element, SubElement, tostring
 from xml.dom import minidom
 
@@ -40,9 +41,15 @@ def create_wxr_element(meta_data, html_content, file_path):
     category = SubElement(item, 'category')
 
     title.text = meta_data.get('title', 'No Title')
-    pubDate.text = datetime.strptime(meta_data.get('date', ''), "%Y-%m-%d %H:%M:%S %z").strftime("%a, %d %b %Y %H:%M:%S %z")
     creator.text = os.getenv('HUGO_WXR_CREATOR', 'admin')
-    
+
+    date_str = meta_data.get('date', '')
+    parsed_date = parse_date(date_str)
+    if parsed_date:
+        pubDate.text = parsed_date.strftime("%a, %d %b %Y %H:%M:%S %z")
+    else:
+        pubDate.text = "Invalid Date"
+
     guid_text = create_guid(file_path, meta_data.get('date', ''))
     guid_base = os.getenv('HUGO_WXR_GUID', 'http://example.com/')
     guid.text = f"{guid_base}{guid_text}"
