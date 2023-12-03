@@ -27,6 +27,12 @@ def parse_hugo_markdown(file_path):
 
     return meta_dict, html_body
 
+def parse_date(date_str):
+    try:
+        return date_parser.parse(date_str)
+    except ValueError:
+        return None
+
 def create_guid(file_path, date):
     hash_input = f"{file_path}-{date}"
     return hashlib.sha256(hash_input.encode()).hexdigest()
